@@ -4,7 +4,6 @@ export default function OccurrenceDetail({ occ, onAddEncountered }) {
       <h2>{occ.title}</h2>
 
       {Object.values(occ)
-        .slice()
         .splice(2)
         .map((el) => (
           <div
