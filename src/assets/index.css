@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  color: #fff;
+  background-color: #444;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.container {
+  padding: 1rem;
+}
+
+input,
+button {
+  border: none;
+  /* border-radius: 0.25rem; */
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+/* EXCEPTION */
+.btn-add {
+  margin: 0;
+}
+
+.occurrence-detail {
+  background-color: rgb(51, 51, 51);
+  border: none;
+  /* border-radius: 1rem; */
+  margin-top: 0.5rem;
+  padding: 2rem;
+  width: 600px;
+}
+
+.prompt {
+  background-color: rgb(87, 87, 87);
+  border: 0.05rem solid;
+  /* border-radius: 0.5rem; */
+  margin: 1rem 0;
+  padding: 1rem;
+}
