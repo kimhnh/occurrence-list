@@ -1,4 +1,8 @@
 export default function Search({ query, onQuerySearch }) {
+  // function handleSubmitSearch(e) {
+  //   e.preventDefault();
+  // }
+
   return (
     <input
       type='text'

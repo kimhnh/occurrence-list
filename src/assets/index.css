@@ -27,17 +27,26 @@ body {
 input,
 button {
   border: none;
-  /* border-radius: 0.25rem; */
+  border-radius: 0.25rem;
   margin: 0.5rem;
   padding: 0.5rem 1rem;
 }
 
-/* EXCEPTION */
-.btn-add {
-  margin: 0;
+input:focus {
+  outline: none;
 }
 
-.occurrence-detail {
+button {
+  cursor: pointer;
+}
+
+/* EXCEPTION */
+.btn-disabled {
+  background-color: #b0b0b072;
+  color: #ffffff95;
+}
+
+.show-occ-detail {
   background-color: rgb(51, 51, 51);
   border: none;
   /* border-radius: 1rem; */
@@ -52,4 +61,8 @@ button {
   /* border-radius: 0.5rem; */
   margin: 1rem 0;
   padding: 1rem;
+}
+
+.progress {
+  margin-top: 0.25rem;
 }

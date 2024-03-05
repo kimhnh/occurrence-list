@@ -74,4 +74,28 @@ export const initialData = [
       result: 'Enter battle. After achieving victory, obtain a 3-star Blessing and 1 Curio.',
     },
   },
+  {
+    id: 3,
+    title: 'Bounty Hunter',
+    prompt_1: {
+      choice: 'Rip off his badge!',
+      result: 'Enter battle. After achieving victory, obtain a 1-3 star Blessing.',
+    },
+    prompt_2: {
+      choice: 'Buy his calfskin boots for cheap!',
+      result: 'Spend 50 Cosmic Fragments to buy 1 random Normal Curio.',
+    },
+    prompt_3: {
+      choice: 'Get more "intelligence" from him.',
+      result: 'Gain 4 random Curios, which may contain negative ones.',
+    },
+    prompt_4: {
+      choice: "Give him the fur you're wearing.",
+      result: 'Discard 1 Curio, and obtain 200 Cosmic Fragments.',
+    },
+    prompt_5: {
+      choice: 'Walk away.',
+      result: "You're not interested.",
+    },
+  },
 ];

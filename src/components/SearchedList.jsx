@@ -1,19 +1,38 @@
+import Button from './Button';
 import Occurence from './Occurrence';
 
-export default function SearchedList({ initialData, onAddEncountered, query }) {
+export default function SearchedList({
+  initialData,
+  query,
+  selectOccurrence,
+  setSelectOccurrence,
+}) {
   return (
-    // filter only titles
-    <ul className='list'>
-      {query &&
-        initialData
-          .filter((el) => el.title.toLowerCase().includes(query))
-          .map((occ) => (
-            <Occurence
-              key={crypto.randomUUID()}
-              occ={occ}
-              onAddEncountered={onAddEncountered}
-            />
-          ))}
-    </ul>
+    /* 
+    1. filter to only titles
+    2. use titles to search for "occurrence"
+    3. show results
+    4. click one single "occurrence" (save state) --> display detail
+    */
+
+    <div className='query-result'>
+      {initialData
+        .filter((el) => el.title.toLowerCase().includes(query))
+        .map((occ) => (
+          <Occurence
+            key={crypto.randomUUID()}
+            occ={occ}
+          >
+            {!selectOccurrence && (
+              <Button
+                className='btn-show-occurrence'
+                onClick={() => setSelectOccurrence(occ)}
+              >
+                {occ.title}
+              </Button>
+            )}
+          </Occurence>
+        ))}
+    </div>
   );
 }
