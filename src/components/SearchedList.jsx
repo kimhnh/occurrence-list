@@ -1,12 +1,8 @@
-import Button from './Button';
+import { initialData } from '../data';
+import Button from './ui/Button';
 import Occurence from './Occurrence';
 
-export default function SearchedList({
-  initialData,
-  query,
-  selectOccurrence,
-  setSelectOccurrence,
-}) {
+export default function SearchedList({ query, selectOccurrence, setSelectOccurrence }) {
   return (
     /* 
     1. filter to only titles
