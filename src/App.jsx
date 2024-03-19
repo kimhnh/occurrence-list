@@ -1,7 +1,5 @@
-import { useState } from 'react';
-import { initialData } from './data.jsx';
-import Button from './components/Button.jsx';
-import Container from './components/Container.jsx';
+import { useRef, useState } from 'react';
+import Container from './components/ui/Container.jsx';
 import Navbar from './components/Navbar';
 import Search from './components/Search.jsx';
 import SearchedList from './components/SearchedList.jsx';
@@ -19,25 +17,16 @@ export default function App() {
   const [selectOccurrence, setSelectOccurrence] = useState('');
   const [list, setList] = useState([]); // occ encountered list
   const [showList, setShowList] = useState(false);
-
-  // derived state
-  const progress = list.length === 0 ? 0 : (list.length / initialData.length) * 100;
-  const isAdded = list.some((el) => el.id === selectOccurrence.id); // check if occ already added
-  const isThereList = list.length > 0;
-
-  // add escape side effect
+  const inputEl = useRef(null);
 
   // event handlers
-  function handleQuerySearch(e) {
-    setQuery(e.target.value);
-  }
-
   // Add to list ------------------------------------- ISSUE WITH ADDING OCCURRENCE
   function handleAddOccurrence(occ) {
     // guard clause to prevent adding duplicates
     if (list.some((el) => el.id === occ.id)) return;
     setList((e) => [...e, occ]);
     setSelectOccurrence('');
+    inputEl.current.focus();
     setQuery('');
   }
 
@@ -63,56 +52,40 @@ export default function App() {
 
   return (
     <div className='app'>
-      <Navbar progress={progress}>
-        <Button
-          className={isThereList ? 'btn-nav' : 'btn-disabled'}
-          disabled={isThereList ? false : true}
-          onClick={handleShowList}
-        >
-          {showList ? 'Close' : 'Show'}
-        </Button>
-        <Button
-          className={isThereList ? 'btn-nav' : 'btn-disabled'}
-          disabled={isThereList ? false : true}
-          onClick={handleDeleteList}
-        >
-          Delete
-        </Button>
-      </Navbar>
+      <Navbar
+        list={list}
+        showList={showList}
+        onShowList={handleShowList}
+        onDeleteList={handleDeleteList}
+      />
 
       <Container>
         <Search
           query={query}
-          onQuerySearch={handleQuerySearch}
+          setQuery={setQuery}
+          inputEl={inputEl}
         />
 
+        {/* Display Result/Item */}
         {query && (
           <>
             <SearchedList
-              initialData={initialData}
               query={query}
               selectOccurrence={selectOccurrence}
               setSelectOccurrence={setSelectOccurrence}
             />
             {selectOccurrence && (
-              <ShowOccurrenceDetail selectOccurrence={selectOccurrence}>
-                <Button
-                  className={isAdded ? 'btn-disabled' : 'btn-add'}
-                  onClick={() => handleAddOccurrence(selectOccurrence)}
-                  disabled={isAdded}
-                >
-                  {isAdded ? 'Already added' : 'Add'}
-                </Button>
-                <Button
-                  className='btn-close'
-                  onClick={handleCloseOccurrence}
-                >
-                  Close
-                </Button>
-              </ShowOccurrenceDetail>
+              <ShowOccurrenceDetail
+                list={list}
+                selectOccurrence={selectOccurrence}
+                onAddOccurrence={handleAddOccurrence}
+                onCloseOccurrence={handleCloseOccurrence}
+              />
             )}
           </>
         )}
+
+        {/* Display List */}
         {showList && <ShowEncounteredList list={list} />}
       </Container>
     </div>
